@@ -148,44 +148,45 @@ function quiz() {
     populate("answerContainer", choice3Div);
     populate("answerContainer", choice4Div);
 
-    setInterval(decrement, 1000);
+    intervalId = setInterval(decrement, 1000);
     console.log("After setting setInterval: " + intervalId);
-    if (time > 0) {
-        document.querySelectorAll(".continueButton").forEach(function (element) {
-            element.addEventListener("click", function () {
-                clearInterval(intervalId);
-                if (element.textContent === questionSheet.questions[questionOn].answer) {
-                    deleteChildren("questionContainer");
-                    deleteChildren("answerContainer");
-                    answerDiv.textContent = "You got it right!";
-                    populate("answerContainer", answerDiv);
-                    numRight++;
-                }
-                else {
-                    deleteChildren("questionContainer");
-                    deleteChildren("answerContainer");
-                    answerDiv.textContent = "You got it wrong!";
-                    populate("answerContainer", answerDiv);
-                    numWrong++;
-                }
-                questionOn++;
-                if (questionOn < questionSheet.questions.length) {
-                    timeoutId = setTimeout(quiz, 5000);
-                    console.log("After running setTimeout: " + intervalId);
-                }
-                else {
-                    deleteChildren("answerContainer");
-                    addText("You're done!", answerDiv);
-                    answerDiv.textContent += " You got: " + numRight + "right" + " You got: " + numWrong + "wrong";
-                    populate("answerContainer", answerDiv)
-                };
-            })
+    document.querySelectorAll(".continueButton").forEach(function (element) {
+        element.addEventListener("click", function () {
+            clearInterval(intervalId);
+            if (element.textContent === questionSheet.questions[questionOn].answer) {
+                deleteChildren("questionContainer");
+                deleteChildren("answerContainer");
+                document.querySelector(".space").innerHTML = "";
+                answerDiv.textContent = "You got it right!";
+                populate("answerContainer", answerDiv);
+                numRight++;
+            }
+            else {
+                deleteChildren("questionContainer");
+                deleteChildren("answerContainer");
+                document.querySelector(".space").innerHTML = "";
+                answerDiv.textContent = "You got it wrong!";
+                populate("answerContainer", answerDiv);
+                numWrong++;
+            }
+            questionOn++;
+            if (questionOn < questionSheet.questions.length) {
+                timeoutId = setTimeout(quiz, 5000);
+                console.log("After running setTimeout: " + intervalId);
+            }
+            else {
+                deleteChildren("answerContainer");
+                addText("You're done!", answerDiv);
+                answerDiv.textContent += " You got: " + numRight + "right" + " You got: " + numWrong + "wrong";
+                populate("answerContainer", answerDiv)
+            };
         })
-    }
-    else{
+    })
+    if(time === 0){
         clearInterval(intervalId);
         deleteChildren("questionContainer");
         deleteChildren("answerContainer");
+        document.querySelector(".space").innerHTML = "";
         answerDiv.textContent = "You ran out of time!";
         populate("answerContainer", answerDiv);
         numWrong++;
