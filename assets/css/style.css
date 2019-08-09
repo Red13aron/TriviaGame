@@ -1,0 +1,56 @@
+body {
+    background-image: url(../images/HorrorBackground.png);
+    background-size: cover;
+}
+
+.container {
+    width: 75%;
+    height: 75%;
+    background:#000000;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.title{
+    font-family: 'Butcherman', cursive;
+    font-size: 128px;
+    color:#fcbf6c;
+    text-align: center;
+    margin-top:5%;
+}
+
+.horror{
+    font-family: 'Butcherman', cursive;
+    background: #ada994;
+    font-size:48px;
+    width: max-content;
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+}
+
+#questionContainer{
+    height:20%;
+}
+
+.horrorButton{
+    font-family: 'Butcherman', cursive;
+    background: #d9c097;
+    color:#000000;
+    font-size:48px;
+    width: max-content;
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+}
+
+.horrorButton:hover{
+    border:10px, solid, #830c12;
+}
+
+.space{
+    height:20%;
+}

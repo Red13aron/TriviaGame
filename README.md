@@ -6,4 +6,4 @@ This game tests your knowledge of the long list of cult horrors.  From classics 
 
 ### Website
 
-You can check the game out at: 
+You can check the game out at: https://red13aron.github.io/TriviaGame/
