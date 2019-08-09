@@ -73,7 +73,23 @@ function stop() {
     //  We just pass the name of the interval
     //  to the clearInterval function.
     clearInterval(intervalId);
-    document.querySelector(".space").innerHTML = "Times up!";
+    deleteChildren("questionContainer");
+    deleteChildren("answerContainer");
+    document.querySelector(".space").innerHTML = "";
+    answerDiv.textContent = "You ran out of time!";
+    populate("answerContainer", answerDiv);
+    numWrong++;
+    questionOn++;
+    if (questionOn < questionSheet.questions.length) {
+        timeoutId = setTimeout(quiz, 5000);
+        console.log("After running setTimeout: " + intervalId);
+    }
+    else {
+        deleteChildren("answerContainer");
+        addText("You're done!", answerDiv);
+        answerDiv.textContent += " You got: " + numRight + "right" + " You got: " + numWrong + "wrong";
+        populate("answerContainer", answerDiv)
+    }
 }
 
 function horrify(element, isButton) {
@@ -182,26 +198,6 @@ function quiz() {
             };
         })
     })
-    if(time === 0){
-        clearInterval(intervalId);
-        deleteChildren("questionContainer");
-        deleteChildren("answerContainer");
-        document.querySelector(".space").innerHTML = "";
-        answerDiv.textContent = "You ran out of time!";
-        populate("answerContainer", answerDiv);
-        numWrong++;
-        questionOn++;
-        if (questionOn < questionSheet.questions.length) {
-            timeoutId = setTimeout(quiz, 5000);
-            console.log("After running setTimeout: " + intervalId);
-        }
-        else {
-            deleteChildren("answerContainer");
-            addText("You're done!", answerDiv);
-            answerDiv.textContent += " You got: " + numRight + "right" + " You got: " + numWrong + "wrong";
-            populate("answerContainer", answerDiv)
-        };
-    }
 }
 //Main Functions
 //Making Divs Spooky
